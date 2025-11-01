@@ -24,6 +24,19 @@ function UseEffectExample() {
     </div>
   )
 }
+
+return (
+  <div className="bg-white p-4 rounded shadow">
+    <input
+      type="text"
+      placeholder="Type your name"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      className="border p-2 w-full mb-4 rounded"
+    />
+    <h1 className="text-lg text-blue-600">{message}</h1>
+  </div>
+);
  
 export default UseEffectExample;
  

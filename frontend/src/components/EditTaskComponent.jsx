@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function EditTasks() {
+function EditTaskComponent() {
   const [tasks, setTasks] = useState([]);
   const [selectedId, setSelectedId] = useState('');
   const [title, setTitle] = useState('');
@@ -125,8 +125,14 @@ function EditTasks() {
           </button>
         </form>
       )}
+      <br />
+          <button className="View"onClick={() => navigate("/tasks")}>View tasks</button>
+          <br />
+          <br />
+          <button className="Home"onClick={() => navigate("/")}>Home</button>
     </div>
   );
 }
 
-export default EditTasks;
+
+export default EditTaskComponent;

@@ -1,10 +1,11 @@
 // GetTasks.jsx
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
-function GetTasks() {
+function GetTaskComponent() {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState('');
-
+  const navigate = useNavigate();
   // Replace this with your actual token (ideally store in localStorage or context)
   const token = localStorage.getItem('access_token'); // or a hardcoded string for now
 
@@ -37,12 +38,22 @@ function GetTasks() {
       ) : (
         <ul>
           {tasks.map(task => (
-            <li key={task.id}>{task.title}</li>
+           <li key={task.id}>{task.id} | <Link to={`/tasks/${task.id}`}>{task.title}</Link> | {task.status}</li>
           ))}
         </ul>
       )}
+      <br />
+          <button className="Add"onClick={() => navigate("/create")}> Add tasks</button>
+          <br />
+          <br />
+          <button className="Edit"onClick={() => navigate("/edit")}>Edit Task</button>
+          <br />
+          <br />
+          <button className="Home"onClick={() => navigate("/")}>Home</button>
     </div>
   );
 }
 
-export default GetTasks;
+
+
+export default GetTaskComponent;

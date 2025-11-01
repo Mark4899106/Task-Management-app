@@ -15,7 +15,7 @@ app.config["JWT_SECRET_KEY"] = "super-secret-key"
  
 jwt = JWTManager(app)
  
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
  
 DB_NAME = 'task.db'
  
@@ -106,7 +106,7 @@ def delete_task(task_id):
 @app.route('/tasks/<int:task_id>', methods=['GET'])
 def get_task(task_id):
     conn = get_db_connection()
-    task = conn.execute('SELECT id, title, status FROM tasks').fetchall()
+    task = conn.execute('SELECT id, title, status FROM tasks WHERE id = ?', (task_id,)).fetchone()
     conn.close()
     if task is None:
         return jsonify({"error": "Task not found"}), 404
